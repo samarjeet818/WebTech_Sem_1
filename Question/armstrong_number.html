@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Armstrong Check</h2>
+    <div id="screen"></div>
+
+    <script>
+        let screen = document.getElementById("screen");
+        let num = 153;
+        let temp = num;
+        let sum = 0;
+
+        while (temp > 0) {
+            let digit = temp % 10;
+            sum += digit * digit * digit; 
+            temp = Math.floor(temp / 10); 
+        }
+
+        let message = "";
+        if (sum === num) {
+            message = num + " is an Armstrong Number";
+        } else {
+            message = num + " is NOT an Armstrong Number";
+        }
+
+        console.log(message);
+        screen.innerHTML += message + "<br>";
+    </script>
+</body>
+</html>
