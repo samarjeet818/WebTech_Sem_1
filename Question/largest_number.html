@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Largest Number</h2>
+    <div id="screen"></div>
+
+    <script>
+        let screen = document.getElementById("screen");
+        let num1 = 10;
+        let num2 = 25;
+        let largest = 0;
+
+        if (num1 > num2) {
+            largest = num1;
+        } else {
+            largest = num2;
+        }
+
+        console.log("The largest number is: " + largest);
+        screen.innerHTML += "The largest number is: " + largest + "<br>";
+    </script>
+</body>
+</html>

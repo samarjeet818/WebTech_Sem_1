@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Pyramid Pattern</h2>
+    <pre id="screen"></pre>
+
+    <script>
+        let screen = document.getElementById("screen");
+        let rows = 5;
+
+        for (let i = 1; i <= rows; i++) {
+            let rowString = "";
+            for (let j = 1; j <= i; j++) {
+                rowString += "* ";
+            }
+
+            console.log(rowString);
+            screen.innerHTML += rowString + "\n";
+        }
+    </script>
+</body>
+</html>

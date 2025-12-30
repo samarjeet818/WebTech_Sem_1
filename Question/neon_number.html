@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Neon Number</h2>
+    <div id="screen"></div>
+
+    <script>
+        let screen = document.getElementById("screen");
+        let num = 9;
+        let square = num * num;
+        let sum = 0;
+
+        while (square > 0) {
+            sum += square % 10;
+            square = Math.floor(square / 10);
+        }
+
+        let message = "";
+        if (sum === num) {
+            message = num + " is a Neon Number";
+        } else {
+            message = num + " is NOT a Neon Number";
+        }
+
+        console.log(message);
+        screen.innerHTML += message + "<br>";
+    </script>
+</body>
+</html>

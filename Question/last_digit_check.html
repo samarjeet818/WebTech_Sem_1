@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Last Digit Check</h2>
+    <div id="screen"></div>
+
+    <script>
+        let screen = document.getElementById("screen");
+        let a = 20, b = 30, c = 400;
+
+        let lastA = a % 10;
+        let lastB = b % 10;
+        let lastC = c % 10;
+        let message = "";
+
+        if (lastA === lastB && lastB === lastC) {
+            message = "Yes, last digits are the same.";
+        } else {
+            message = "No, last digits are different.";
+        }
+
+        console.log(message);
+        screen.innerHTML += message + "<br>";
+    </script>
+</body>
+</html>

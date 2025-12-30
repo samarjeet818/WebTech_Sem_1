@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Palindrome Checker</h2>
+    <div id="screen"></div>
+
+    <script>
+        let screen = document.getElementById("screen");
+        let num = 121;
+        let original = num;
+        let reversed = 0;
+
+        while (num > 0) {
+            let digit = num % 10;
+            reversed = (reversed * 10) + digit;
+            num = Math.floor(num / 10);
+        }
+
+        let message = "";
+        if (original === reversed) {
+            message = original + " is a Palindrome";
+        } else {
+            message = original + " is NOT a Palindrome";
+        }
+
+        console.log(message);
+        screen.innerHTML += message + "<br>";
+    </script>
+</body>
+</html>

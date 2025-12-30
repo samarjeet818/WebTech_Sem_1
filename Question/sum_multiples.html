@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Sum of Multiples</h2>
+    <div id="screen"></div>
+
+    <script>
+        let screen = document.getElementById("screen");
+        let totalSum = 0;
+
+        for (let i = 0; i < 1000; i++) {
+            if (i % 3 === 0 || i % 5 === 0) {
+                totalSum = totalSum + i;
+            }
+        }
+
+        console.log("Total Sum: " + totalSum);
+        screen.innerHTML += "Total Sum: " + totalSum + "<br>";
+    </script>
+</body>
+</html>

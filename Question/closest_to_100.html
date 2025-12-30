@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Closest to 100</h2>
+    <div id="screen"></div>
+
+    <script>
+        let screen = document.getElementById("screen");
+        let x = 90;
+        let y = 89;
+
+        let distX = Math.abs(100 - x);
+        let distY = Math.abs(100 - y);
+        let result = 0;
+
+        if (distX < distY) {
+            result = x;
+        } else {
+            result = y;
+        }
+
+        console.log("Closest to 100 is: " + result);
+        screen.innerHTML += "Closest to 100 is: " + result + "<br>";
+    </script>
+</body>
+</html>

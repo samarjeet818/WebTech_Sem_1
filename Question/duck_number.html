@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Duck Number</h2>
+    <div id="screen"></div>
+
+    <script>
+        let screen = document.getElementById("screen");
+        let num = 203;
+        let text = num.toString();
+        let message = "";
+
+        if (text.includes('0') && text[0] !== '0') {
+            message = num + " is a Duck Number";
+        } else {
+            message = num + " is NOT a Duck Number";
+        }
+
+        console.log(message);
+        screen.innerHTML += message + "<br>";
+    </script>
+</body>
+</html>

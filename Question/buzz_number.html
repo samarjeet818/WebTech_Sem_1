@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Buzz Number</h2>
+    <div id="screen"></div>
+
+    <script>
+        let screen = document.getElementById("screen");
+        let num = 63;
+        let message = "";
+
+        if (num % 7 === 0 || num % 10 === 7) {
+            message = num + " is a Buzz Number";
+        } else {
+            message = num + " is NOT a Buzz Number";
+        }
+
+        console.log(message);
+        screen.innerHTML += message + "<br>";
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Leap Year Checker</h2>
+    <div id="screen"></div>
+
+    <script>
+        let screen = document.getElementById("screen");
+        let year = 2024;
+        let message = "";
+
+        if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
+            message = year + " is a Leap Year";
+        } else {
+            message = year + " is NOT a Leap Year";
+        }
+
+        console.log(message);
+        screen.innerHTML += message + "<br>";
+    </script>
+</body>
+</html>
