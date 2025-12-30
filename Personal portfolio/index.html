@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samarjeet's Portfolio</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- GENERAL SETUP --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            background-color: #8e24aa;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.7rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Navbar Left (Contact Info) */
+        .nav-left .contact-card-header {
+            background-color: #7b1fa2;
+            border-radius: 4px;
+            padding: 8px 12px;
+            font-size: 0.8rem;
+            min-width: 190px;
+        }
+        .contact-card-header h3 { margin: 0 0 4px 0; font-size: 0.9rem; }
+        .contact-card-header p { margin: 2px 0; display: flex; align-items: center; gap: 6px; }
+        .contact-card-header a { color: #fff; text-decoration: none; }
+        .contact-card-header a:hover { text-decoration: underline; }
+
+        /* Navbar Right (Links) */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .nav-links a:hover {
+            color: #ffeb3b;
+            transform: scale(1.05);
+        }
+
+        /* --- SECTIONS --- */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Content Card Style (The "Box" look) */
+        .content-card {
+            background: white;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* --- HERO / ABOUT SECTION --- */
+        #about {
+            display: flex;
+            align-items: center;
+            gap: 50px; /* Increased gap for better spacing */
+            background: white;
+            border-radius: 10px;
+            padding: 3rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+
+        /* UPDATED PROFILE IMAGE STYLE */
+        .profile-container {
+            position: relative;
+            width: 250px;  /* Fixed container size */
+            height: 250px;
+            flex-shrink: 0;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%; /* Perfect circle */
+            object-fit: cover; /* Ensures image covers area without distortion */
+            object-position: center top; /* Focus on face (top center) */
+            border: 6px solid #8e24aa; /* Thicker, brand-colored border */
+            box-shadow: 0 8px 20px rgba(142, 36, 170, 0.3); /* Soft purple shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05); /* Slight zoom on hover */
+            box-shadow: 0 12px 25px rgba(142, 36, 170, 0.5);
+        }
+
+        /* --- ABOUT ME EXPANDED --- */
+        .bio-content p { font-size: 1.1rem; line-height: 1.6; color: #555; }
+        .bio-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 1rem; 
+            margin-top: 1.5rem; 
+        }
+        .bio-item { 
+            background: #f0f4f8; 
+            padding: 1rem; 
+            border-left: 4px solid #8e24aa; 
+            border-radius: 4px; 
+        }
+
+        /* --- BADGES SECTION --- */
+        .badge-container { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 1.5rem; 
+            justify-content: center; 
+            margin-top: 1.5rem; 
+        }
+        .badge-card { 
+            background: #fff; 
+            border: 1px solid #eee; 
+            border-radius: 12px; 
+            padding: 1.5rem; 
+            width: 260px; 
+            text-align: center; 
+            transition: transform 0.3s; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); 
+            text-decoration: none; 
+            display: block;
+            color: inherit;
+        }
+        .badge-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
+            border-color: #8e24aa;
+        }
+        .badge-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .badge-info h3 { margin: 0.5rem 0; color: #333; font-size: 1.1rem; }
+        .badge-issuer { display: block; font-size: 0.85rem; color: #8e24aa; font-weight: bold; margin-bottom: 0.5rem; }
+        .badge-info p { font-size: 0.9rem; color: #666; }
+
+        /* --- SKILLS SECTION --- */
+        .skills-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+        .skill-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 150px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .skill-card i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        /* --- CERTIFICATES SECTION --- */
+        .cert-list { list-style: none; padding: 0; }
+        .cert-item { 
+            background: #fff; 
+            border-bottom: 1px solid #eee; 
+            padding: 1.5rem; 
+            display: flex; 
+            align-items: flex-start; 
+            gap: 1rem; 
+            transition: background 0.2s;
+        }
+        .cert-item:hover { background: #fafafa; }
+        .cert-item:last-child { border-bottom: none; }
+        .cert-icon { font-size: 2rem; color: #8e24aa; min-width: 40px; }
+        .cert-details h3 { margin: 0 0 0.5rem 0; color: #2c3e50; font-size: 1.1rem; }
+        .cert-details h3 a { 
+            text-decoration: none; 
+            color: #2c3e50; 
+            transition: color 0.2s;
+        }
+        .cert-details h3 a:hover { color: #8e24aa; text-decoration: underline; }
+        
+        .cert-meta { 
+            background: #e1f5fe; 
+            color: #0277bd; 
+            padding: 0.2rem 0.6rem; 
+            border-radius: 4px; 
+            font-size: 0.85rem; 
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+        .cert-date { font-size: 0.85rem; color: #888; margin-left: 10px; }
+
+        /* --- PROJECTS SECTION --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .project-card {
+            background: white;
+            border-left: 5px solid #e74c3c;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            text-decoration: none; /* For clickable links */
+            display: block;
+            color: inherit;
+        }
+        .project-card:hover { transform: translateY(-5px); }
+
+        /* Special style for the Neural Codex highlighted card */
+        .project-card.highlight {
+            border-left-color: #8e24aa;
+            background: #fdfbff;
+            border: 1px solid #e1bee7;
+            border-left-width: 5px;
+        }
+
+        /* --- RECOMMENDATIONS & FORM --- */
+        .rec-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 2rem;
+        }
+        .recommendation-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-style: italic;
+            border: 1px solid #ddd;
+        }
+        form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        input, textarea {
+            width: 95%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #8e24aa;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 5px;
+        }
+        button:hover { background-color: #6a1b9a; }
+
+        /* --- SOCIALS SECTION --- */
+        .social-links { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 1rem; 
+            justify-content: center; 
+            margin-top: 1rem; 
+        }
+        .social-btn { 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            padding: 0.8rem 1.5rem; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            color: white; 
+            font-weight: bold; 
+            transition: opacity 0.3s; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .social-btn:hover { opacity: 0.9; transform: scale(1.05); }
+        .social-btn.email { background: #db4437; }
+        .social-btn.linkedin { background: #0077b5; }
+        .social-btn.github { background: #333; }
+        .social-btn.whatsapp { background: #25D366; }
+        .social-btn.telegram { background: #0088cc; }
+
+        /* --- EXTRAS --- */
+        .home-fab {
+            position: fixed; right: 25px; bottom: 25px;
+            width: 45px; height: 45px;
+            border-radius: 50%; background-color: #8e24aa;
+            color: #fff; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            text-decoration: none; z-index: 1200;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            #about { flex-direction: column; text-align: center; gap: 2rem; }
+            .nav-links { display: none; } /* Simplified for mobile */
+            .profile-container { width: 200px; height: 200px; margin: 0 auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Anchor for Top -->
+    <a id="top"></a>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-left">
+            <div class="contact-card-header">
+                <h3>Samarjeet Singh</h3>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:010samarjeet@gmail.com">010samarjeet@gmail.com</a></p>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#badges">Badges</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#connect">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section (UPDATED PROFILE CONTAINER) -->
+    <section id="about">
+        <div class="profile-container">
+            <!-- Ensure image name matches EXACTLY: 'ME.jpg' (case sensitive) -->
+            <img src="ME.png" alt="Samarjeet Profile" class="profile-img">
+        </div>
+        <div>
+            <h1>Hi, I'm Samarjeet! 👋</h1>
+            <p>I am a BTech CSE student specializing in AI/ML at Rungta College. As a Class Representative, I balance leadership with coding. I am passionate about Python, Web Development, and building smart solutions for real-world problems.</p>
+        </div>
+    </section>
+
+    <!-- About Me Expanded -->
+    <section id="about-me" class="content-card">
+        <h2 style="text-align:center; color:#8e24aa;">👨‍💻 About Me</h2>
+        <div class="bio-content">
+            <p>
+                I am a motivated <strong>BTech CSE student (AI & ML)</strong> at Rungta College. As <strong>Class Representative</strong>, I bridge the gap between students and faculty while building robust Python and Web solutions.
+            </p>
+            <div class="bio-grid">
+                <div class="bio-item">
+                    <i class="fas fa-code"></i> <strong>Languages:</strong> Python, C++, HTML, CSS
+                </div>
+                <div class="bio-item">
+                    <i class="fas fa-tools"></i> <strong>Tools:</strong> VS Code, GitHub, Google Forms
+                </div>
+                <div class="bio-item">
+                    <i class="fas fa-users"></i> <strong>Soft Skills:</strong> Leadership, Public Speaking
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Badges Section -->
+    <section id="badges" class="content-card" style="background:#f9f9f9;">
+        <h2 style="text-align:center; color:#8e24aa;">🏆 Badges & Achievements</h2>
+        <div class="badge-container">
+            <!-- Microsoft Badge 1: Power BI -->
+            <a href="https://learn.microsoft.com/en-us/users/samarjeet-7524/achievements/nmqe8rdf?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" class="badge-card">
+                <div class="badge-icon">📊</div>
+                <div class="badge-info">
+                    <h3>Power BI Fundamentals</h3>
+                    <span class="badge-issuer">Microsoft | Verified</span>
+                    <p>Describe the business value of Microsoft Power BI.</p>
+                </div>
+            </a>
+
+            <!-- Microsoft Badge 2: Data Analytics -->
+            <a href="https://learn.microsoft.com/en-us/users/samarjeet-7524/achievements/fqmhvjgx?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" class="badge-card">
+                <div class="badge-icon">📈</div>
+                <div class="badge-info">
+                    <h3>Data Analytics Starter</h3>
+                    <span class="badge-issuer">Microsoft | Verified</span>
+                    <p>Get started with Microsoft data analytics concepts.</p>
+                </div>
+            </a>
+
+            <!-- Microsoft Badge 3: Azure Data -->
+            <a href="https://learn.microsoft.com/en-us/users/samarjeet-7524/achievements/82z5ae3w?ref=https%3A%2F%2Fwww.linkedin.com%2F" target="_blank" class="badge-card">
+                <div class="badge-icon">☁️</div>
+                <div class="badge-info">
+                    <h3>Azure Data Explorer</h3>
+                    <span class="badge-issuer">Microsoft | Verified</span>
+                    <p>Explore the fundamentals of Azure data services.</p>
+                </div>
+            </a>
+
+            <!-- Hackathon Badge -->
+            <a href="https://neural-codex-proj-mindfulltask.netlify.app/" target="_blank" class="badge-card">
+                <div class="badge-icon">🚀</div>
+                <div class="badge-info">
+                    <h3>Hackathon Lead</h3>
+                    <span class="badge-issuer">Smart India Hackathon</span>
+                    <p>Led 'Neural Codex'. Click to see our winning solution.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>My Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fab fa-html5" style="color: orange;"></i>
+                <h3>HTML5</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-css3-alt" style="color: blue;"></i>
+                <h3>CSS3</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-js" style="color: yellow;"></i>
+                <h3>JavaScript</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fab fa-python" style="color: #306998;"></i>
+                <h3>Python</h3>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-brain" style="color: purple;"></i>
+                <h3>AI/ML</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="content-card">
+        <h2 style="text-align:center; color:#8e24aa;">📜 Education & Certifications</h2>
+        <ul class="cert-list">
+            
+            <!-- Google Gemini -->
+            <li class="cert-item">
+                <div class="cert-icon"><i class="fab fa-google"></i></div>
+                <div class="cert-details">
+                    <h3>Google's Gemini Academy 2025</h3>
+                    <span class="cert-meta">Google | Dec 22, 2025</span>
+                    <p>Successful completion of AI & LLM training duration.</p>
+                </div>
+            </li>
+
+            <!-- IBM C Programming -->
+            <li class="cert-item">
+                <div class="cert-icon"><i class="fas fa-laptop-code"></i></div>
+                <div class="cert-details">
+                    <h3>
+                        <a href="https://courses.risu.skillsnetwork.site/certificates/98643dc9bcab4ccda1e237ec74114ee3" target="_blank">
+                            Software Foundation Course with C Programming <i class="fas fa-external-link-alt" style="font-size:0.8rem; color:#8e24aa;"></i>
+                        </a>
+                    </h3>
+                    <span class="cert-meta">IBM | Dec 22, 2025</span>
+                    <p>Comprehensive C programming foundations provided by IBM Developer Skills Network.</p>
+                </div>
+            </li>
+
+            <!-- Michigan C -->
+            <li class="cert-item">
+                <div class="cert-icon"><i class="fas fa-university"></i></div>
+                <div class="cert-details">
+                    <h3>
+                        <a href="https://coursera.org/verify/LP8G9BVIIKME" target="_blank">
+                            Programming in C <i class="fas fa-external-link-alt" style="font-size:0.8rem; color:#8e24aa;"></i>
+                        </a>
+                    </h3>
+                    <span class="cert-meta">University of Michigan | Dec 20, 2025</span>
+                    <p>Authorized by University of Michigan through Coursera.</p>
+                </div>
+            </li>
+
+            <!-- IBM HTML/CSS/JS -->
+            <li class="cert-item">
+                <div class="cert-icon"><i class="fab fa-js-square"></i></div>
+                <div class="cert-details">
+                    <h3>
+                        <a href="https://coursera.org/verify/IZXWJ6HWXUCM" target="_blank">
+                            Introduction to HTML, CSS, & JavaScript <i class="fas fa-external-link-alt" style="font-size:0.8rem; color:#8e24aa;"></i>
+                        </a>
+                    </h3>
+                    <span class="cert-meta">IBM | Dec 20, 2025</span>
+                    <p>Full stack web basics authorized by IBM.</p>
+                </div>
+            </li>
+
+            <!-- Michigan HTML5 -->
+            <li class="cert-item">
+                <div class="cert-icon"><i class="fab fa-html5"></i></div>
+                <div class="cert-details">
+                    <h3>
+                        <a href="https://coursera.org/verify/QBD385CVGNL5" target="_blank">
+                            Introduction to HTML5 <i class="fas fa-external-link-alt" style="font-size:0.8rem; color:#8e24aa;"></i>
+                        </a>
+                    </h3>
+                    <span class="cert-meta">University of Michigan | Nov 8, 2025</span>
+                    <p>Web structure and semantic markup specialization.</p>
+                </div>
+            </li>
+
+            <!-- Michigan CSS3 -->
+            <li class="cert-item">
+                <div class="cert-icon"><i class="fab fa-css3-alt"></i></div>
+                <div class="cert-details">
+                    <h3>
+                        <a href="https://coursera.org/verify/LWTN256YWD7V" target="_blank">
+                            Introduction to CSS3 <i class="fas fa-external-link-alt" style="font-size:0.8rem; color:#8e24aa;"></i>
+                        </a>
+                    </h3>
+                    <span class="cert-meta">University of Michigan | Nov 29, 2025</span>
+                    <p>Advanced styling and responsive design concepts.</p>
+                </div>
+            </li>
+            
+            <!-- LMS IBM HTML/CSS/JS -->
+            <li class="cert-item">
+                <div class="cert-icon"><i class="fas fa-code"></i></div>
+                <div class="cert-details">
+                    <h3>
+                        <a href="https://courses.risu.skillsnetwork.site/certificates/5b4ec100bda14b32b613cf197ee68f2f" target="_blank">
+                            HTML, CSS, and JavaScript for Beginners <i class="fas fa-external-link-alt" style="font-size:0.8rem; color:#8e24aa;"></i>
+                        </a>
+                    </h3>
+                    <span class="cert-meta">IBM Skills Network | Dec 23, 2025</span>
+                    <p>Fundamental web development skills from IBM.</p>
+                </div>
+            </li>
+
+            <!-- B.Tech -->
+            <li class="cert-item">
+                <div class="cert-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="cert-details">
+                    <h3>B.Tech CSE (AI & ML)</h3>
+                    <span class="cert-meta">Rungta College | Expected 2029</span>
+                    <p>Specializing in Artificial Intelligence and Machine Learning algorithms.</p>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            
+            <!-- Neural Codex Project (HIGHLIGHTED) -->
+            <a href="https://neural-codex-proj-mindfulltask.netlify.app/" target="_blank" class="project-card highlight">
+                <h3>🧠 Neural Codex (Live Solution) <i class="fas fa-external-link-alt" style="font-size:0.8rem;"></i></h3>
+                <p><strong>Our Winner Solution:</strong> An AI-powered platform for mindful task management. Click to experience the live project.</p>
+            </a>
+
+            <div class="project-card">
+                <h3>🤖 AI Attendance Tracker</h3>
+                <p>A Python-based system using OpenCV to mark student attendance automatically via face recognition.</p>
+            </div>
+            <div class="project-card">
+                <h3>📱 Tech Spec Comparator</h3>
+                <p>A web tool comparing smartphone specifications (Price vs Performance) helping users find the best phone under ₹15,000.</p>
+            </div>
+            <div class="project-card">
+                <h3>📂 CR Management Portal</h3>
+                <p>A dashboard for Class Representatives to manage assignments, notices, and student lists efficiently.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommendations Section -->
+    <section id="recommendations">
+        <h2>Recommendations</h2>
+        <div class="rec-container" id="rec-list">
+            <div class="recommendation-card">
+                <p>"Samarjeet is an excellent Class Rep. He manages communication perfectly!"</p>
+                <h4>- Prof. Sharma</h4>
+            </div>
+            <div class="recommendation-card">
+                <p>"Great coding skills in Python. Always helps the team debug errors."</p>
+                <h4>- Rahul (Peer)</h4>
+            </div>
+        </div>
+        
+        <h3>Leave a Recommendation</h3>
+        <form id="rec-form">
+            <input type="text" id="rec-name" placeholder="Your Name" required>
+            <textarea id="rec-msg" rows="3" placeholder="Write your message..." required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <!-- Connect / Socials Section -->
+    <section id="connect" class="content-card" style="text-align:center;">
+        <h2 style="color:#8e24aa;">🌐 Connect With Me</h2>
+        <div class="social-links">
+            <a href="mailto:010samarjeet@gmail.com" class="social-btn email">
+                <i class="fas fa-envelope"></i> Email
+            </a>
+            <a href="https://www.linkedin.com/in/samarjeet-singh-4b74a9383/" target="_blank" class="social-btn linkedin">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://github.com/samarjeet818" target="_blank" class="social-btn github">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://t.me/Sam_1800h" target="_blank" class="social-btn telegram">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+        </div>
+    </section>
+
+    <!-- Floating Home Button -->
+    <a href="#top" class="home-fab" aria-label="Back to top">
+        <i class="fas fa-arrow-circle-up"></i>
+    </a>
+
+    <script>
+        const form = document.getElementById('rec-form');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('rec-name').value;
+            const msg = document.getElementById('rec-msg').value;
+
+            const list = document.getElementById('rec-list');
+            const newCard = document.createElement('div');
+            newCard.className = 'recommendation-card';
+            newCard.innerHTML = `<p>"${msg}"</p><h4>- ${name}</h4>`;
+            list.appendChild(newCard);
+
+            document.getElementById('rec-name').value = '';
+            document.getElementById('rec-msg').value = '';
+            alert("Thank you for your recommendation!");
+        });
+    </script>
+</body>
+</html>
