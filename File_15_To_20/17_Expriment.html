@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Task 17: Event Listeners</title>
+    <style>
+        #status { font-weight: bold; margin-top: 10px; color: green;}
+    </style>
+</head>
+<body>
+    <h3>Interact with the page:</h3>
+    <button id="actionBtn">Hover or Click Me</button>
+    <p>Type anything: <input type="text" id="inputBox"></p>
+    
+    <div id="status">Waiting for event...</div>
+
+    <script>
+        const btn = document.getElementById('actionBtn');
+        const input = document.getElementById('inputBox');
+        const status = document.getElementById('status');
+
+        // Mouse Event: Click
+        btn.addEventListener('click', function() {
+            status.innerText = "Event Detected: Button Clicked!";
+        });
+
+        // Mouse Event: Mouse Over
+        btn.addEventListener('mouseover', function() {
+            btn.style.backgroundColor = "yellow";
+        });
+        
+        // Mouse Event: Mouse Out (reset color)
+        btn.addEventListener('mouseout', function() {
+            btn.style.backgroundColor = "";
+        });
+
+        // Keyboard Event: Key Up
+        input.addEventListener('keyup', function(event) {
+            status.innerText = "Typing: " + event.key;
+        });
+    </script>
+</body>
+</html>

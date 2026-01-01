@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Task 19: Canvas Drawing</title>
+    <style>
+        canvas { border: 1px solid black; background-color: #f9f9f9; }
+    </style>
+</head>
+<body>
+    <h3>Simple Canvas Drawing</h3>
+    <canvas id="myCanvas" width="300" height="200"></canvas>
+    <br>
+    <button onclick="drawShapes()">Draw Shapes</button>
+
+    <script>
+        function drawShapes() {
+            const canvas = document.getElementById('myCanvas');
+            const ctx = canvas.getContext('2d');
+
+            // 1. Draw a Red Rectangle
+            ctx.fillStyle = "red";
+            ctx.fillRect(20, 20, 100, 100); // x, y, width, height
+
+            // 2. Draw a Blue Circle
+            ctx.beginPath();
+            ctx.arc(200, 70, 40, 0, 2 * Math.PI); // x, y, radius, startAngle, endAngle
+            ctx.fillStyle = "blue";
+            ctx.fill();
+            ctx.stroke();
+        }
+    </script>
+</body>
+</html>
